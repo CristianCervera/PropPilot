@@ -6,11 +6,12 @@ import { Auth } from '../../core/auth';
 import { TKey, TPipe } from '../../core/i18n';
 import { Icon } from '../../shared/icon';
 import { LangSwitch } from '../../shared/lang-switch';
+import { ThemeSwitch } from '../../shared/theme-switch';
 
 @Component({
   selector: 'app-login',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [FormsModule, Icon, LangSwitch, TPipe],
+  imports: [FormsModule, Icon, LangSwitch, ThemeSwitch, TPipe],
   template: `
     <div class="grid min-h-dvh lg:grid-cols-[1.1fr_1fr]">
       <section class="relative hidden overflow-hidden lg:block">
@@ -39,7 +40,10 @@ import { LangSwitch } from '../../shared/lang-switch';
       </section>
 
       <section class="relative flex items-center justify-center p-6">
-        <app-lang-switch class="absolute top-5 right-5" />
+        <div class="absolute top-5 right-5 flex items-center gap-2">
+          <app-theme-switch />
+          <app-lang-switch />
+        </div>
         <form class="panel w-full max-w-sm p-7 animate-fade-up" (submit)="submit($event)">
           <img src="logo.webp" alt="" class="mb-5 size-12 rounded-xl lg:hidden" />
           <h2 class="h-display text-2xl font-semibold">{{ 'login.welcome' | t }}</h2>

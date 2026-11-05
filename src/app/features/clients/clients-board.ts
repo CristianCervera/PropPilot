@@ -38,8 +38,8 @@ import { ClientForm } from './client-form';
           <input class="input !pl-9" [placeholder]="'board.searchPlaceholder' | t" [ngModel]="q()" (ngModelChange)="q.set($event)" [attr.aria-label]="'board.searchAria' | t" />
         </div>
         <div class="flex rounded-xl border border-[var(--line)] p-0.5">
-          <button class="btn btn-sm" [class]="mode() === 'board' ? 'bg-white/10' : 'text-faint'" (click)="mode.set('board')"><app-icon name="grid" [size]="14" /> {{ 'board.board' | t }}</button>
-          <button class="btn btn-sm" [class]="mode() === 'table' ? 'bg-white/10' : 'text-faint'" (click)="mode.set('table')"><app-icon name="list" [size]="14" /> {{ 'props.viewList' | t }}</button>
+          <button class="btn btn-sm" [class]="mode() === 'board' ? 'bg-tint/10' : 'text-faint'" (click)="mode.set('board')"><app-icon name="grid" [size]="14" /> {{ 'board.board' | t }}</button>
+          <button class="btn btn-sm" [class]="mode() === 'table' ? 'bg-tint/10' : 'text-faint'" (click)="mode.set('table')"><app-icon name="list" [size]="14" /> {{ 'props.viewList' | t }}</button>
         </div>
       </div>
 
@@ -95,7 +95,7 @@ import { ClientForm } from './client-form';
             </thead>
             <tbody>
               @for (c of filtered(); track c.id) {
-                <tr class="cursor-pointer border-b border-[var(--line)] last:border-0 hover:bg-white/[0.03]" (click)="open(c)">
+                <tr class="cursor-pointer border-b border-[var(--line)] last:border-0 hover:bg-tint/[0.03]" (click)="open(c)">
                   <td class="px-4 py-3"><p class="font-medium">{{ c.name }}</p><p class="text-xs text-faint">{{ c.email }}</p></td>
                   <td class="px-4 py-3 text-muted">{{ c.type | label: 'clientType' }}</td>
                   <td class="px-4 py-3"><app-status-badge [value]="c.status" kind="client" /></td>
@@ -159,7 +159,7 @@ export class ClientsBoard {
   }
 
   scoreClass(score: number) {
-    return score >= 75 ? 'bg-magenta/20 text-magenta-soft' : score >= 50 ? 'bg-violet/20 text-violet-soft' : 'bg-white/5 text-faint';
+    return score >= 75 ? 'bg-magenta/20 text-magenta-soft' : score >= 50 ? 'bg-violet/20 text-violet-soft' : 'bg-tint/5 text-faint';
   }
 
   async drop(event: CdkDragDrop<ClientStatus>) {

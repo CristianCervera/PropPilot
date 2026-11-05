@@ -20,8 +20,8 @@ import { CopilotStore } from './copilot.store';
         <nav class="min-h-0 flex-1 space-y-0.5 overflow-y-auto px-2 pb-3">
           @for (c of store.history(); track c.id) {
             <div
-              class="group flex cursor-pointer items-center gap-2 rounded-lg px-2.5 py-2 text-sm transition hover:bg-white/5"
-              [class.bg-white/8]="store.conversationId() === c.id"
+              class="group flex cursor-pointer items-center gap-2 rounded-lg px-2.5 py-2 text-sm transition hover:bg-tint/5"
+              [class.bg-tint/8]="store.conversationId() === c.id"
               (click)="store.openConversation(c.id)"
             >
               <app-icon name="message" [size]="14" class="text-faint" />

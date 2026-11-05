@@ -115,7 +115,7 @@ const EXAMPLES: TKey[] = ['props.example1', 'props.example2', 'props.example3', 
         @for (v of views; track v.id) {
           <button
             class="btn btn-sm btn-icon"
-            [class]="view() === v.id ? 'btn-ghost !bg-white/10' : 'btn-ghost !border-transparent text-faint'"
+            [class]="view() === v.id ? 'btn-ghost !bg-tint/10' : 'btn-ghost !border-transparent text-faint'"
             (click)="setView(v.id)"
             [attr.aria-label]="v.label | t"
             [title]="v.label | t"
@@ -152,7 +152,7 @@ const EXAMPLES: TKey[] = ['props.example1', 'props.example2', 'props.example3', 
           @case ('list') {
             <div class="panel divide-y divide-[var(--line)] overflow-hidden" [class.opacity-60]="loading()">
               @for (p of items(); track p.id) {
-                <a [routerLink]="['/properties', p.id]" class="flex items-center gap-4 px-4 py-3 transition hover:bg-white/[0.03]">
+                <a [routerLink]="['/properties', p.id]" class="flex items-center gap-4 px-4 py-3 transition hover:bg-tint/[0.03]">
                   <app-photo class="h-14 w-20 shrink-0 rounded-lg" [src]="p.images[0]" />
                   <div class="min-w-0 flex-1">
                     <p class="truncate text-sm font-medium">{{ p.title }}</p>

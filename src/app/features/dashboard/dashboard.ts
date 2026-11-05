@@ -54,7 +54,7 @@ const PIPELINE: ClientStatus[] = ['nuevo', 'contactado', 'cualificado', 'visitan
                   [routerLink]="p.propertyId ? ['/properties', p.propertyId] : p.clientId ? ['/clients', p.clientId] : null"
                   class="panel-flat flex gap-3 p-3.5 transition hover:border-[var(--line-strong)]"
                 >
-                  <span class="mt-0.5 grid size-7 shrink-0 place-items-center rounded-lg bg-white/5 text-xs font-bold text-violet-soft">{{ $index + 1 }}</span>
+                  <span class="mt-0.5 grid size-7 shrink-0 place-items-center rounded-lg bg-tint/5 text-xs font-bold text-violet-soft">{{ $index + 1 }}</span>
                   <span>
                     <span class="block text-sm font-semibold">{{ p.title }}</span>
                     <span class="mt-0.5 block text-xs leading-relaxed text-muted">{{ p.detail }}</span>
@@ -97,9 +97,9 @@ const PIPELINE: ClientStatus[] = ['nuevo', 'contactado', 'cualificado', 'visitan
               @for (stage of pipeline(); track stage.status) {
                 <div class="flex items-center gap-3">
                   <span class="w-24 shrink-0 text-xs text-muted">{{ stage.status | label: 'clientStatus' }}</span>
-                  <div class="h-7 flex-1 overflow-hidden rounded-lg bg-white/[0.03]">
+                  <div class="h-7 flex-1 overflow-hidden rounded-lg bg-tint/[0.03]">
                     <div
-                      class="flex h-full items-center rounded-lg px-2.5 text-xs font-semibold text-white transition-all duration-700"
+                      class="flex h-full items-center rounded-lg px-2.5 text-xs font-semibold text-fg transition-all duration-700"
                       [style.width.%]="stage.pct"
                       [style.background]="'linear-gradient(90deg,' + stage.color + 'cc,' + stage.color + '66)'"
                     >{{ stage.total }}</div>
@@ -114,7 +114,7 @@ const PIPELINE: ClientStatus[] = ['nuevo', 'contactado', 'cualificado', 'visitan
             <h2 class="h-display font-semibold">{{ 'dash.portfolio' | t }}</h2>
             <div class="mt-4 flex items-center gap-5">
               <svg viewBox="0 0 42 42" class="size-32 shrink-0 -rotate-90">
-                <circle cx="21" cy="21" r="15.9" fill="none" stroke="rgb(255 255 255 / 0.05)" stroke-width="5" />
+                <circle cx="21" cy="21" r="15.9" fill="none" class="stroke-tint/5" stroke-width="5" />
                 @for (seg of donut(); track seg.status) {
                   <circle cx="21" cy="21" r="15.9" fill="none" [attr.stroke]="seg.color" stroke-width="5"
                     [attr.stroke-dasharray]="seg.pct + ' ' + (100 - seg.pct)" [attr.stroke-dashoffset]="-seg.offset" />
@@ -169,10 +169,10 @@ const PIPELINE: ClientStatus[] = ['nuevo', 'contactado', 'cualificado', 'visitan
             <ul class="mt-4 space-y-2">
               @for (c of s.hotLeads; track c.id) {
                 <li>
-                  <a [routerLink]="['/clients', c.id]" class="flex items-center gap-3 rounded-xl p-2 transition hover:bg-white/[0.04]">
+                  <a [routerLink]="['/clients', c.id]" class="flex items-center gap-3 rounded-xl p-2 transition hover:bg-tint/[0.04]">
                     <span class="relative grid size-10 shrink-0 place-items-center">
                       <svg viewBox="0 0 36 36" class="absolute inset-0 -rotate-90">
-                        <circle cx="18" cy="18" r="16" fill="none" stroke="rgb(255 255 255 / 0.06)" stroke-width="3" />
+                        <circle cx="18" cy="18" r="16" fill="none" class="stroke-tint/6" stroke-width="3" />
                         <circle cx="18" cy="18" r="16" fill="none" stroke="url(#g)" stroke-width="3" stroke-linecap="round" [attr.stroke-dasharray]="(c.leadScore ?? 0) + ' 100'" pathLength="100" />
                         <defs><linearGradient id="g"><stop offset="0" stop-color="#8b5cf6" /><stop offset="1" stop-color="#e64fb0" /></linearGradient></defs>
                       </svg>
@@ -211,7 +211,7 @@ const PIPELINE: ClientStatus[] = ['nuevo', 'contactado', 'cualificado', 'visitan
             <ul class="mt-4 space-y-1">
               @for (p of s.staleListings; track p.id) {
                 <li class="flex items-center gap-2">
-                  <a [routerLink]="['/properties', p.id]" class="min-w-0 flex-1 truncate rounded-lg px-2 py-1.5 text-sm hover:bg-white/[0.04]">{{ p.title }}</a>
+                  <a [routerLink]="['/properties', p.id]" class="min-w-0 flex-1 truncate rounded-lg px-2 py-1.5 text-sm hover:bg-tint/[0.04]">{{ p.title }}</a>
                   <button class="text-faint hover:text-violet-soft" [title]="'dash.findBuyers' | t" (click)="findBuyers(p.id, p.title)" [attr.aria-label]="'dash.findBuyers' | t">
                     <app-icon name="target" [size]="16" />
                   </button>

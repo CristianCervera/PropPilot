@@ -25,6 +25,8 @@ export const en: Record<keyof typeof es, string> = {
   "common.offline": "Cannot reach the server.",
   "common.aiThinking": "The AI is thinking",
   "common.language": "Language",
+  "theme.toLight": "Switch to light mode",
+  "theme.toDark": "Switch to dark mode",
 
   // Property types
   "type.piso": "Flat",

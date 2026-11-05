@@ -9,6 +9,7 @@ import { CopilotPanel } from '../features/copilot/copilot-panel';
 import { CopilotStore } from '../features/copilot/copilot.store';
 import { Icon } from '../shared/icon';
 import { LangSwitch } from '../shared/lang-switch';
+import { ThemeSwitch } from '../shared/theme-switch';
 
 const NAV: { path: string; icon: string; label: TKey; exact: boolean }[] = [
   { path: '/', icon: 'dashboard', label: 'title.home', exact: true },
@@ -21,7 +22,7 @@ const NAV: { path: string; icon: string; label: TKey; exact: boolean }[] = [
 @Component({
   selector: 'app-shell',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterOutlet, RouterLink, RouterLinkActive, Icon, CopilotPanel, LangSwitch, TPipe],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive, Icon, CopilotPanel, LangSwitch, ThemeSwitch, TPipe],
   host: { '(document:keydown)': 'onKey($event)' },
   template: `
     <div class="flex min-h-dvh">
@@ -41,9 +42,9 @@ const NAV: { path: string; icon: string; label: TKey; exact: boolean }[] = [
           @for (item of nav; track item.path) {
             <a
               [routerLink]="item.path"
-              routerLinkActive="!bg-white/[0.07] !text-fg nav-active"
+              routerLinkActive="!bg-tint/[0.07] !text-fg nav-active"
               [routerLinkActiveOptions]="{ exact: item.exact }"
-              class="group relative flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-muted transition hover:bg-white/[0.04] hover:text-fg"
+              class="group relative flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-muted transition hover:bg-tint/[0.04] hover:text-fg"
               (click)="menuOpen.set(false)"
             >
               <app-icon [name]="item.icon" [class]="item.icon === 'sparkles' ? 'text-violet-soft' : ''" />
@@ -52,11 +53,12 @@ const NAV: { path: string; icon: string; label: TKey; exact: boolean }[] = [
           }
         </nav>
 
-        <div class="m-3 rounded-xl border border-[var(--line)] bg-white/[0.02] p-3">
+        <div class="m-3 rounded-xl border border-[var(--line)] bg-tint/[0.02] p-3">
           <div class="flex items-center gap-2 text-xs">
             <span class="size-2 rounded-full" [class]="aiOnline() ? 'bg-ok shadow-[0_0_10px] shadow-ok' : 'bg-warn'"></span>
             <span class="flex-1 text-muted">{{ (aiOnline() ? 'shell.aiOn' : 'shell.aiOff') | t }}</span>
             <app-lang-switch />
+            <app-theme-switch />
           </div>
           @if (!aiOnline()) {
             <p class="mt-1.5 text-[11px] leading-snug text-faint">{{ 'shell.aiHint' | t }}</p>
@@ -85,7 +87,7 @@ const NAV: { path: string; icon: string; label: TKey; exact: boolean }[] = [
             <app-icon name="menu" />
           </button>
           <button
-            class="group flex h-10 max-w-xl min-w-0 flex-1 items-center gap-3 rounded-xl border border-[var(--line)] bg-white/[0.03] px-3.5 text-left text-sm text-faint transition hover:border-[var(--line-strong)] hover:text-muted"
+            class="group flex h-10 max-w-xl min-w-0 flex-1 items-center gap-3 rounded-xl border border-[var(--line)] bg-tint/[0.03] px-3.5 text-left text-sm text-faint transition hover:border-[var(--line-strong)] hover:text-muted"
             (click)="copilot.open()"
           >
             <app-icon name="sparkles" class="text-violet-soft" [size]="16" />

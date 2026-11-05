@@ -24,6 +24,8 @@ export const es = {
   "common.offline": "No hay conexión con el servidor.",
   "common.aiThinking": "La IA está pensando",
   "common.language": "Idioma",
+  "theme.toLight": "Cambiar a modo claro",
+  "theme.toDark": "Cambiar a modo oscuro",
 
   // Property types
   "type.piso": "Piso",

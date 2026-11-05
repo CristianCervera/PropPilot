@@ -133,7 +133,7 @@ import { ClientForm } from './client-form';
                 <div class="mt-5 flex items-center gap-4 animate-fade-up">
                   <div class="relative grid size-20 place-items-center">
                     <svg viewBox="0 0 36 36" class="absolute inset-0 -rotate-90">
-                      <circle cx="18" cy="18" r="15.5" fill="none" stroke="rgb(255 255 255 / 0.07)" stroke-width="3" />
+                      <circle cx="18" cy="18" r="15.5" fill="none" class="stroke-tint/7" stroke-width="3" />
                       <circle cx="18" cy="18" r="15.5" fill="none" stroke="url(#lead)" stroke-width="3" stroke-linecap="round" pathLength="100" [attr.stroke-dasharray]="ins.leadScore + ' 100'" />
                       <defs><linearGradient id="lead"><stop offset="0" stop-color="#8b5cf6" /><stop offset="1" stop-color="#e64fb0" /></linearGradient></defs>
                     </svg>
@@ -144,7 +144,7 @@ import { ClientForm } from './client-form';
                     <p class="mt-2 text-sm leading-snug text-muted">{{ ins.summary }}</p>
                   </div>
                 </div>
-                <div class="mt-5 rounded-xl bg-white/[0.04] p-3.5">
+                <div class="mt-5 rounded-xl bg-tint/[0.04] p-3.5">
                   <p class="label">{{ 'client.nextAction' | t }}</p>
                   <p class="mt-1 text-sm font-medium">{{ ins.nextBestAction }}</p>
                 </div>

@@ -113,7 +113,7 @@ const toLocalInput = (d: Date) => {
         <a [routerLink]="['/properties', v.property.id]" class="mt-3 block font-semibold hover:underline">{{ v.property.title }}</a>
         <p class="text-sm text-muted">{{ v.property.address }}, {{ v.property.city }}</p>
         <a [routerLink]="['/clients', v.client.id]" class="mt-3 flex items-center gap-2 text-sm hover:underline"><app-icon name="users" [size]="15" /> {{ v.client.name }} {{ v.client.phone ? '· ' + v.client.phone : '' }}</a>
-        @if (v.notes) { <p class="mt-3 rounded-lg bg-white/[0.04] p-3 text-sm">{{ v.notes }}</p> }
+        @if (v.notes) { <p class="mt-3 rounded-lg bg-tint/[0.04] p-3 text-sm">{{ v.notes }}</p> }
         <label class="mt-4 block">
           <span class="label">{{ 'agenda.feedback' | t }}</span>
           <textarea class="input mt-1.5" rows="3" [(ngModel)]="feedback" [placeholder]="'agenda.feedbackPlaceholder' | t"></textarea>
@@ -222,7 +222,7 @@ export class Agenda implements OnInit {
     return {
       programada: 'bg-violet/20 border-violet text-fg',
       realizada: 'bg-ok/10 border-ok text-muted',
-      cancelada: 'bg-white/5 border-faint text-faint line-through',
+      cancelada: 'bg-tint/5 border-faint text-faint line-through',
     }[status];
   }
 

@@ -136,7 +136,7 @@ type Tab = 'valuation' | 'listing' | 'matches';
                   <button
                     role="tab"
                     class="flex flex-1 items-center justify-center gap-1.5 px-2 py-3 text-xs font-semibold transition"
-                    [class]="tab() === tb.id ? 'bg-white/[0.06] text-fg' : 'text-faint hover:text-muted'"
+                    [class]="tab() === tb.id ? 'bg-tint/[0.06] text-fg' : 'text-faint hover:text-muted'"
                     [attr.aria-selected]="tab() === tb.id"
                     (click)="tab.set(tb.id)"
                   >
@@ -180,7 +180,7 @@ type Tab = 'valuation' | 'listing' | 'matches';
                             </li>
                           }
                         </ul>
-                        <div class="mt-4 rounded-xl bg-white/[0.04] p-3 text-sm">
+                        <div class="mt-4 rounded-xl bg-tint/[0.04] p-3 text-sm">
                           <p class="label mb-1">{{ 'detail.recommendation' | t }}</p>
                           {{ v.recommendation }}
                         </div>
@@ -236,7 +236,7 @@ type Tab = 'valuation' | 'listing' | 'matches';
                               <li class="flex gap-2"><app-icon name="sparkles" [size]="13" class="mt-1 text-violet-soft" /> {{ h }}</li>
                             }
                           </ul>
-                          <div class="rounded-xl bg-white/[0.04] p-3">
+                          <div class="rounded-xl bg-tint/[0.04] p-3">
                             <div class="flex items-center justify-between"><p class="label">{{ 'detail.socialPost' | t }}</p>
                               <button class="text-faint hover:text-fg" (click)="copy(l.socialPost)" [attr.aria-label]="'common.copy' | t"><app-icon name="copy" [size]="14" /></button>
                             </div>

@@ -29,7 +29,7 @@ import { Icon } from './icon';
         (error)="failed.set(true)"
       />
     } @else {
-      <div class="grid h-full w-full place-items-center bg-gradient-to-br from-ink-700 via-ink-800 to-[#3b1740] text-faint">
+      <div class="grid h-full w-full place-items-center bg-gradient-to-br from-ink-700 via-ink-800 to-magenta/15 text-faint">
         <app-icon name="building" [size]="28" />
       </div>
     }
@@ -48,7 +48,7 @@ export class Photo {
   template: `
     <span
       class="inline-flex items-center gap-1.5 rounded-full bg-ink-950/75 px-2.5 py-0.5 text-[11px] font-semibold backdrop-blur"
-      [style.color]="color()"
+      [style.color]="'color-mix(in oklab, ' + color() + ', var(--color-fg) var(--badge-mix))'"
       [style.border]="'1px solid ' + color() + '55'"
     >
       <span class="size-1.5 rounded-full" [style.background]="color()"></span>

@@ -24,6 +24,9 @@
   --color-warn: #fbbf24;
   --color-bad: #fb7185;
   --color-info: #60a5fa;
+
+  /* Neutral overlay for washes and hairlines: white on dark, ink on light. */
+  --color-tint: #ffffff;
 }
 
 :root {
@@ -31,6 +34,53 @@
   --line: rgb(183 156 255 / 0.12);
   --line-strong: rgb(183 156 255 / 0.24);
   --grad-ai: linear-gradient(120deg, #8b5cf6 0%, #c04fd8 50%, #e64fb0 100%);
+  --page-glow-a: rgb(139 92 246 / 0.16);
+  --page-glow-b: rgb(230 79 176 / 0.1);
+  --panel-bg: rgb(23 16 49 / 0.62);
+  --panel-flat-bg: rgb(18 13 38 / 0.7);
+  --panel-shadow: none;
+  --input-bg: rgb(11 8 24 / 0.6);
+  --ai-surface-bg: rgb(23 16 49 / 0.92);
+  /* How much status colours lean towards the text colour (pastels need it on light). */
+  --badge-mix: 0%;
+  --map-tiles: invert(1) hue-rotate(200deg) brightness(0.85) contrast(0.9) saturate(0.5);
+}
+
+/* Light theme: same tokens, re-pointed. Set by ThemeService on <html data-theme>. */
+:root[data-theme='light'] {
+  color-scheme: light;
+  --color-ink-950: #f5f3fb;
+  --color-ink-900: #ffffff;
+  --color-ink-850: #faf9fe;
+  --color-ink-800: #efebf9;
+  --color-ink-700: #e2dbf4;
+  --color-ink-600: #c9bdea;
+
+  --color-fg: #1a1433;
+  --color-muted: #554e78;
+  --color-faint: #746d94;
+
+  --color-violet-soft: #6d3fd9;
+  --color-magenta-soft: #c2308e;
+
+  --color-ok: #059669;
+  --color-warn: #b45309;
+  --color-bad: #e11d48;
+  --color-info: #2563eb;
+
+  --color-tint: #1a1433;
+
+  --line: rgb(91 60 196 / 0.14);
+  --line-strong: rgb(91 60 196 / 0.28);
+  --page-glow-a: rgb(139 92 246 / 0.12);
+  --page-glow-b: rgb(230 79 176 / 0.08);
+  --panel-bg: rgb(255 255 255 / 0.78);
+  --panel-flat-bg: rgb(255 255 255 / 0.88);
+  --panel-shadow: 0 1px 2px rgb(26 20 51 / 0.04), 0 10px 30px -18px rgb(76 50 160 / 0.22);
+  --input-bg: #ffffff;
+  --ai-surface-bg: rgb(255 255 255 / 0.97);
+  --badge-mix: 45%;
+  --map-tiles: saturate(0.8);
 }
 
 html,
@@ -41,8 +91,8 @@ body {
 body {
   margin: 0;
   background:
-    radial-gradient(1200px 600px at 85% -10%, rgb(139 92 246 / 0.16), transparent 60%),
-    radial-gradient(900px 500px at -10% 110%, rgb(230 79 176 / 0.1), transparent 60%),
+    radial-gradient(1200px 600px at 85% -10%, var(--page-glow-a), transparent 60%),
+    radial-gradient(900px 500px at -10% 110%, var(--page-glow-b), transparent 60%),
     var(--color-ink-950);
   background-attachment: fixed;
   color: var(--color-fg);
@@ -61,16 +111,18 @@ body {
 
 @layer components {
   .panel {
-    background: rgb(23 16 49 / 0.62);
+    background: var(--panel-bg);
     border: 1px solid var(--line);
     border-radius: 1.1rem;
+    box-shadow: var(--panel-shadow);
     backdrop-filter: blur(14px);
   }
 
   .panel-flat {
-    background: rgb(18 13 38 / 0.7);
+    background: var(--panel-flat-bg);
     border: 1px solid var(--line);
     border-radius: 0.9rem;
+    box-shadow: var(--panel-shadow);
   }
 
   .h-display {
@@ -131,12 +183,12 @@ body {
     filter: brightness(1.08);
   }
   .btn-ghost {
-    background: rgb(255 255 255 / 0.03);
+    background: color-mix(in srgb, var(--color-tint) 3%, transparent);
     border: 1px solid var(--line);
     color: var(--color-fg);
   }
   .btn-ghost:hover:not(:disabled) {
-    background: rgb(255 255 255 / 0.07);
+    background: color-mix(in srgb, var(--color-tint) 7%, transparent);
     border-color: var(--line-strong);
   }
   .btn-danger {
@@ -150,7 +202,7 @@ body {
     height: 2.6rem;
     padding: 0 0.85rem;
     border-radius: 0.7rem;
-    background: rgb(11 8 24 / 0.6);
+    background: var(--input-bg);
     border: 1px solid var(--line);
     color: var(--color-fg);
     font-size: 0.9rem;
@@ -189,7 +241,7 @@ body {
     border-radius: 999px;
     font-size: 0.75rem;
     font-weight: 500;
-    background: rgb(255 255 255 / 0.05);
+    background: color-mix(in srgb, var(--color-tint) 5%, transparent);
     border: 1px solid var(--line);
     color: var(--color-muted);
     white-space: nowrap;
@@ -211,7 +263,7 @@ body {
   /* Visual language for anything produced by the AI: gradient hairline border. */
   .ai-surface {
     position: relative;
-    background: linear-gradient(rgb(23 16 49 / 0.92), rgb(23 16 49 / 0.92)) padding-box,
+    background: linear-gradient(var(--ai-surface-bg), var(--ai-surface-bg)) padding-box,
       var(--grad-ai) border-box;
     border: 1px solid transparent;
     border-radius: 1.1rem;
@@ -226,9 +278,9 @@ body {
   .shimmer {
     background: linear-gradient(
       90deg,
-      rgb(255 255 255 / 0.04) 0%,
+      color-mix(in srgb, var(--color-tint) 4%, transparent) 0%,
       rgb(183 156 255 / 0.12) 50%,
-      rgb(255 255 255 / 0.04) 100%
+      color-mix(in srgb, var(--color-tint) 4%, transparent) 100%
     );
     background-size: 200% 100%;
     animation: shimmer 1.4s linear infinite;
@@ -258,7 +310,7 @@ body {
     margin: 0.2rem 0;
   }
   .prose-ai strong {
-    color: white;
+    color: var(--color-fg);
     font-weight: 600;
   }
   .prose-ai a {
@@ -275,7 +327,7 @@ body {
     font-size: 1rem;
   }
   .prose-ai code {
-    background: rgb(255 255 255 / 0.08);
+    background: color-mix(in srgb, var(--color-tint) 8%, transparent);
     padding: 0.05rem 0.3rem;
     border-radius: 0.3rem;
     font-size: 0.85em;
@@ -325,13 +377,13 @@ body {
   }
 }
 
-/* Leaflet dark adjustments */
+/* Leaflet theme adjustments */
 .leaflet-container {
   background: var(--color-ink-900);
   font-family: var(--font-sans);
 }
 .leaflet-tile-pane {
-  filter: invert(1) hue-rotate(200deg) brightness(0.85) contrast(0.9) saturate(0.5);
+  filter: var(--map-tiles);
 }
 .leaflet-popup-content-wrapper,
 .leaflet-popup-tip {
